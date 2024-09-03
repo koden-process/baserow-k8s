@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: baserow-service
+  namespace: baserow
+spec:
+  ports:
+  - port: 80
+    targetPort: 8000
+  selector:
+    app: baserow
+  type: ClusterIP

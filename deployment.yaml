@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: baserow
+  namespace: baserow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: baserow
+  template:
+    metadata:
+      labels:
+        app: baserow
+    spec:
+      containers:
+      - name: baserow
+        image: baserow/baserow:1.8.1
+        env:
+        - name: BASEROW_PUBLIC_URL
+          value: "https://baserow.koden.bzh"
+        - name: BASEROW_DATABASE_HOST
+          value: baserow-postgres-service
+        - name: BASEROW_DATABASE_NAME
+          value: baserow
+        - name: BASEROW_DATABASE_USER
+          value: baserow
+        - name: BASEROW_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: baserow-secret
+              key: BASEROW_DATABASE_PASSWORD
+        - name: BASEROW_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: baserow-secret
+              key: BASEROW_SECRET_KEY
+        ports:
+        - containerPort: 8000
+          name: baserow

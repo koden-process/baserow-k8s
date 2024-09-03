@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: baserow-ingress
+  namespace: baserow
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: baserow.koden.bzh
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: baserow-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - baserow.koden.bzh
+    secretName: baserow-tls
