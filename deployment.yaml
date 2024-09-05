@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: baserow
-        image: baserow/baserow:1.8.1
+        image: baserow/baserow:1.27.1
         env:
         - name: BASEROW_PUBLIC_URL
           value: "https://baserow.koden.bzh"
