@@ -36,15 +36,3 @@ spec:
       - name: postgres-storage
         persistentVolumeClaim:
           claimName: baserow-postgres-pvc
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: baserow-postgres-pvc
-  namespace: baserow
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
