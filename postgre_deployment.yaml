@@ -24,6 +24,8 @@ spec:
             secretKeyRef:
               name: baserow-secret
               key: BASEROW_DATABASE_PASSWORD
+        - name: PGDATA
+          value: "/var/lib/postgresql/data/pgdata"  # Utiliser un sous-répertoire
         - name: POSTGRES_DB
           value: baserow
         ports:
