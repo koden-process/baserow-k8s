@@ -43,7 +43,12 @@ spec:
         volumeMounts:
         - name: baserow-media-storage
           mountPath: /baserow/media
+        - name: baserow-data-storage
+          mountPath: /baserow/data
       volumes:
       - name: baserow-media-storage
         persistentVolumeClaim:
           claimName: baserow-media-pvc
+      - name: baserow-data-storage
+        persistentVolumeClaim:
+          claimName: baserow-data-pvc
