@@ -35,6 +35,15 @@ spec:
             secretKeyRef:
               name: baserow-secret
               key: BASEROW_SECRET_KEY
+        - name: BASEROW_FILE_UPLOAD_PATH
+          value: "/baserow/media"
         ports:
         - containerPort: 8000
           name: baserow
+        volumeMounts:
+        - name: baserow-media-storage
+          mountPath: /baserow/media
+      volumes:
+      - name: baserow-media-storage
+        persistentVolumeClaim:
+          claimName: baserow-media-pvc
