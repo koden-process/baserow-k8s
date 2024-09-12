@@ -1,40 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-asgi
+  name: baserow-service
   namespace: baserow
 spec:
-  type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: 8000
   selector:
-    app: backend-asgi
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend-wsgi
-  namespace: baserow
-spec:
-  type: ClusterIP
+    app: baserow 
   ports:
-    - port: 80
-      targetPort: 8000
-  selector:
-    app: backend-wsgi
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: web-frontend
-  namespace: baserow
-spec:
-  type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: 3000
-  selector:
-    app: web-frontend
+  - protocol: TCP
+    port: 80
+    targetPort: 80

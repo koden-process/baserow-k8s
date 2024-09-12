@@ -4,35 +4,22 @@ metadata:
   name: baserow-ingress
   namespace: baserow
   annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true" 
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/affinity: "cookie"
-    nginx.ingress.kubernetes.io/session-cookie-name: "route"
-    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
-    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
-    nginx.ingress.kubernetes.io/proxy-body-size: 20m
-    kubernetes.io/ingress.class: nginx
 spec:
-  ingressClassName: nginx
   tls:
-    - hosts:
-        - baserow.koden.bzh
-      secretName: baserow-tls
+  - hosts:
+    - baserow.koden.bzh
+    secretName: baserow-tls
   rules:
-    - host: baserow.koden.bzh
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/ws/"
-            backend:
-              service:
-                name: backend-asgi
-                port:
-                  number: 80
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: backend-wsgi
-                port:
-                  number: 80
+  - host: baserow.koden.bzh 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: baserow-service
+            port:
+              number: 80
