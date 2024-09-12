@@ -1,15 +1,11 @@
-# baserow-k8s
+# Readme
 
 ```sh
-kubectl apply -f namespace.yaml
-kubectl apply -f secret.yaml
-kubectl apply -f postgre_pvc.yaml
-kubectl apply -f postgre_deployment.yaml
-kubectl apply -f postgre_service.yaml
-kubectl apply -f pvc_data.yaml
-kubectl apply -f pvc_media.yaml
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-kubectl apply -f ingress.yaml
+k apply -f namespace.yaml
+k apply -f secret.yaml
+k apply -f postgresql.yaml
+k apply -f redis.yaml
+k apply -f baserow.yaml
+k apply -f service.yaml
+k apply -f ingress.yaml
 ```
-
