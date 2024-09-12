@@ -17,6 +17,8 @@ spec:
       - name: baserow
         image: baserow/baserow:1.27.1
         env:
+        - name: TZ 
+          value: "Europe/Paris"
         - name: BASEROW_PUBLIC_URL
           value: "https://baserow.koden.bzh"
         - name: BASEROW_DATABASE_HOST
